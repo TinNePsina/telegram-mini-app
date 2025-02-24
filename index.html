@@ -3,31 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram Mini App</title>
+    <title>Личный кабинет студента</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
+            background-color: var(--tg-theme-bg-color, #ffffff);
+            color: var(--tg-theme-text-color, #000000);
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .info {
+            margin-bottom: 20px;
         }
         h1 {
-            color: #333;
+            color: var(--tg-theme-text-color, #000000);
+        }
+        p {
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
-    <h1>Привет, это Telegram Mini App!</h1>
-    <p>Ваш Telegram ID: <span id="user-id"></span></p>
+    <div class="container">
+        <h1>Личный кабинет студента</h1>
+        <div class="info">
+            <p><strong>ФИО:</strong> <span id="fullName"></span></p>
+            <p><strong>Направление:</strong> <span id="direction"></span></p>
+            <p><strong>Курс:</strong> <span id="course"></span></p>
+            <p><strong>Группа:</strong> <span id="group"></span></p>
+            <p><strong>Образовательный рейтинг:</strong> <span id="educationalRating"></span></p>
+            <p><strong>Рейтинг активности:</strong> <span id="activityRating"></span></p>
+        </div>
+    </div>
 
     <script>
         // Инициализация Telegram Web App
         const tg = window.Telegram.WebApp;
 
-        // Получаем данные пользователя
-        const initData = tg.initData;
-        const user = JSON.parse(initData).user;
+        // Данные студента (статически)
+        const studentData = {
+            fullName: "Иванов Иван Иванович",
+            direction: "Программирование",
+            course: 2,
+            group: "P-202",
+            educationalRating: 85,
+            activityRating: 45
+        };
 
-        // Отображаем Telegram ID пользователя
-        document.getElementById('user-id').textContent = user.id;
+        // Заполняем данные на странице
+        document.getElementById('fullName').textContent = studentData.fullName;
+        document.getElementById('direction').textContent = studentData.direction;
+        document.getElementById('course').textContent = studentData.course;
+        document.getElementById('group').textContent = studentData.group;
+        document.getElementById('educationalRating').textContent = studentData.educationalRating;
+        document.getElementById('activityRating').textContent = studentData.activityRating;
 
         // Расширяем приложение на весь экран
         tg.expand();
